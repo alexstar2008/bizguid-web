@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 no-padding-left">
+      <div class="row incatalog" *ngFor="let enterprise of enterprises">
+        <div class="col-md-4 col-sm-4"><img src="img/{{enterprise.name}}" alt="enterprise.name"/></div>
+        <div class="col-md-5 col-sm-4">
+          <h4>{{enterprise.name}}</h4>
+          <!--<p>-->
+          <!--EMPTY-->
+          <!--</p>-->
+        </div>
+        <div class="col-md-3 col-sm-4">
+          <ul>
+            <li><a href=""><i class="fa fa-building"></i>{{enterprise.regionName}}</a></li>
+            <li class="btn-group" role="group">
+              <a id="btnGroupVerticalDrop1" class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown" type="button">
+                <i class="fa fa-mobile fa-lg"></i>
+                {{enterprise.phones}}
+                <span class="caret"></span>
+              </a>
+              <!--<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" role="menu">-->
+              <!--&lt;!&ndash;<li *ngFor="let phone of enterprise.phones">{{phone}}</li>&ndash;&gt;-->
+              <!--</ul>-->
+            </li>
+            <li><a role="button" href="#" data-toggle="modal" data-target="#bgModalMessage"><i
+              class="fa fa-envelope-o"></i> Отправить запрос </a></li>
+            <li><a href=""><i class="fa fa-shopping-cart"></i> Все товары </a></li>
+          </ul>
+          <a class="btn btn-orange grn" role="button" href="#" data-toggle="modal" data-target="#bgModalUp">
+            <i class="fa fa-arrow-up fa-2x fa-inverse"></i>
+            <span>Поднять компанию</span>
+          </a>
+        </div>
+      </div>
+
+      <nav class="pagin">
+        <ul class="pagination">
+          <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Попередня</span></a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Наступна</span></a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>

@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {EnterpriseService} from './enterprise.service';
-import {EnterpiseShort} from './enterpise-short';
-
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +6,8 @@ import {EnterpiseShort} from './enterpise-short';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  enterprises: EnterpiseShort[];
+export class AppComponent {
 
-  constructor(private enterpriseService: EnterpriseService) {
-
-  }
-
-  ngOnInit() {
-    this.getEnterprises();
-  }
-
-  getEnterprises() {
-    this.enterpriseService.getAllEnterprises().subscribe(enterp => {
-      this.enterprises = enterp;
-      console.log(this.enterprises);
-    });
+  constructor() {
   }
 }
