@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-import {EnterpriseService} from '../enterprise.service';
-import {EnterpiseShort} from '../enterpise-short';
-import {Region} from '../region';
-import {Category} from '../category';
+import {EnterpriseService} from '../../services/enterprise.service';
+import {EnterpiseShort} from '../../schemas/enterpise-short';
+import {Region} from '../../schemas/region';
+import {Category} from '../../schemas/category';
 
 @Component({
   selector: 'app-enterprises-list',

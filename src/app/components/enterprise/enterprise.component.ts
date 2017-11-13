@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
-import {EnterpriseService} from '../enterprise.service';
-import {EnterpriseFull} from '../enterprise-full';
+import {EnterpriseService} from '../../services/enterprise.service';
+import {EnterpriseFull} from '../../schemas/enterprise-full';
 
 @Component({
   selector: 'app-enterprise',

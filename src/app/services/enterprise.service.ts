@@ -4,8 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {tap} from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 
-import {EnterpiseShort} from './enterpise-short';
-import {EnterpriseFull} from './enterprise-full';
+import {EnterpiseShort} from '../schemas/enterpise-short';
+import {EnterpriseFull} from '../schemas/enterprise-full';
 
 
 @Injectable()

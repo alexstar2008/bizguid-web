@@ -4,12 +4,12 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {EnterpriseService} from './enterprise.service';
-import {EnterprisesListComponent} from './enterprises-list/enterprises-list.component';
-import { EnterpriseComponent } from './enterprise/enterprise.component';
-import { EnterpriseSearchComponent } from './enterprise-search/enterprise-search.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import {AppRoutingModule} from './routing/app-routing.module';
+import {EnterpriseService} from './services/enterprise.service';
+import {EnterprisesListComponent} from './components/enterprises-list/enterprises-list.component';
+import { EnterpriseComponent } from './components/enterprise/enterprise.component';
+import { EnterpriseSearchComponent } from './components/enterprise-search/enterprise-search.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
