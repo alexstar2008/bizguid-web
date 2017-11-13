@@ -7,11 +7,14 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {EnterpriseService} from './enterprise.service';
 import {EnterprisesListComponent} from './enterprises-list/enterprises-list.component';
+import { EnterpriseComponent } from './enterprise/enterprise.component';
+import { EnterpriseSearchComponent } from './enterprise-search/enterprise-search.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, EnterprisesListComponent],
+  declarations: [AppComponent, EnterprisesListComponent, EnterpriseComponent, EnterpriseSearchComponent, PaginationComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [EnterpriseService],
   bootstrap: [AppComponent]

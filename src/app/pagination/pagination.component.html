@@ -1,0 +1,10 @@
+<nav class="pagin">
+  <ul class="pagination">
+    <li *ngIf="currentPage!==1" (click)="this.getPrev.emit()"><span aria-hidden="true">&laquo;</span>
+    </li>
+    <li *ngFor="let page of getPages()" [ngClass]="{'red':page===currentPage}"
+        (click)="this.getPage.emit(page)">{{page}}
+    </li>
+    <li *ngIf="hasNextPage()" (click)="this.getNext.emit()"><span aria-hidden="true">&raquo;</span>
+  </ul>
+</nav>
