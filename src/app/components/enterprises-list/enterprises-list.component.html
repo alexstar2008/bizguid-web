@@ -1,45 +1,4 @@
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index-buttom.html"><img src="img/logo.gif"/>
-        <h1>Бизнес-Гид</h1></a>
-    </div>
-
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="icon-svg">
-          <button type="button" class="btn btn-default btn-lg i-shop" aria-label="Left Align">
-            <span class="icomoon icon-shopping82" aria-hidden="true"><br/>товары</span>
-          </button>
-          <button type="button" class="btn btn-default btn-lg i-factory active" aria-label="Left Align">
-            <span class="flaticon flaticon-career" aria-hidden="true"><br/>компании</span>
-          </button>
-          <button type="button" class="btn btn-default btn-lg i-document" aria-label="Left Align">
-            <span class="flaticon flaticon-document6" aria-hidden="true"><br/>заявки</span>
-          </button>
-        </li>
-        <li>
-          <form class="navbar-search pull-left">
-            <input type="text" [(ngModel)]="searchText" (keyup)="searchEnterprises()" class="search-query pull-left"
-                   placeholder="Я ищу..." name="search">
-        <li class="dropdown pull-left">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">предприятия <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Товары | Услуги</a></li>
-            <li><a href="#">Объявления</a></li>
-          </ul>
-        </li>
-        <button type="button" class="btn btn-default btn-lg icon-search" aria-label="Left Align">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        </button>
-        </form>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+<app-enterprise-search (searchEnterprises)="setSearchText($event)"></app-enterprise-search>
 <div class="container">
 
   <div class="starter-template">
@@ -47,7 +6,7 @@
         <p class="pull-left">Реклама</p>
         <p class="lead clear">Это место было выделено специально для рекламы <br /> но к сожалению вы её не видите.</p>
       -->
-    <img src="img/reklama2.jpg"/>
+    <img src="assets/reklama2.jpg"/>
   </div>
 </div>
 <div class="container middl">
@@ -63,18 +22,21 @@
   <div class="row">
     <div class="col-md-3">
       <!--<a class="beforeyellow" href="">-->
-      <h3 class="yellows" *ngFor="let category of categories" (click)="toggleSelectedCategory(category)">{{category.name}}</h3>
+      <h3 class="yellows category" *ngFor="let category of categories"
+          [ngClass]="{'category_active':categoriesChosed.indexOf(category._id)!==-1}"
+          (click)="toggleSelectedCategory(category)">
+        {{category.name}}</h3>
 
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#">Продукты пищевые прочие (23357)</a></li>
-        <li><a href="#">Мясо, мясопродукты и продукты убоя животных (20105)</a></li>
-        <li><a href="#">Корма готовые для животных (16012)</a></li>
-        <li><a href="#">Продукция мукомольно-крупяной промышленности и крахмалопродукты (14107)</a></li>
-        <li><a href="#">Продукты молочные и мороженое (10275)</a></li>
-        <li><a href="#">Жиры животные и масла растительные (7308)</a></li>
-        <li><a href="#">Напитки (6845)</a></li>
-        <li><a href="#">Продукция переработки овощей и плодов (4692)</a></li>
-        <li><a href="#">Продукция рыбная (2652)</a></li>
+        <!--<li><a href="#">Продукты пищевые прочие (23357)</a></li>-->
+        <!--<li><a href="#">Мясо, мясопродукты и продукты убоя животных (20105)</a></li>-->
+        <!--<li><a href="#">Корма готовые для животных (16012)</a></li>-->
+        <!--<li><a href="#">Продукция мукомольно-крупяной промышленности и крахмалопродукты (14107)</a></li>-->
+        <!--<li><a href="#">Продукты молочные и мороженое (10275)</a></li>-->
+        <!--<li><a href="#">Жиры животные и масла растительные (7308)</a></li>-->
+        <!--<li><a href="#">Напитки (6845)</a></li>-->
+        <!--<li><a href="#">Продукция переработки овощей и плодов (4692)</a></li>-->
+        <!--<li><a href="#">Продукция рыбная (2652)</a></li>-->
       </ul>
 
       <h4 class="yellows">Компании в регионах</h4>
@@ -82,7 +44,10 @@
               aria-expanded="false" aria-controls="ukr"> Украина <span class="caret"></span></button>
       <!--<div id="ukr" class="collapse ">-->
       <ul>
-        <li *ngFor="let region of regions" (click)="toggleSelectedRegion(region)">{{region.name}}</li>
+        <li *ngFor="let region of regions"><a href="{{region.slug}}"
+                                              [ngClass]="{'region_active':regionsChosed.indexOf(region._id)!=-1}"
+                                              (click)="toggleSelectedRegion(region,$event)">{{region.name}}</a>
+        </li>
       </ul>
       <div class="clear"></div>
       <!--</div>-->
@@ -94,40 +59,45 @@
       <a class="btn panel panel-heading" href=""> Эстония</a>
     </div>
     <!-- /leftmenu -->
+
+
     <div class="col-md-9 no-padding-left">
-      <div class="row incatalog" *ngFor="let enterprise of enterprises">
-        <div class="col-md-4 col-sm-4" *ngIf="false"><img src="img/{{enterprise.name}}" alt="enterprise.name"/></div>
-        <div class="col-md-5 col-sm-4">
-          <a routerLink="/enterprise/{{enterprise.slug}}"><h4>{{enterprise.name}}</h4></a>
-          <!--<p>-->
-          <!--EMPTY-->
-          <!--</p>-->
-        </div>
-        <div class="col-md-3 col-sm-4">
-          <ul>
-            <li *ngIf="enterprise.regionName"><i class="fa fa-building"></i>{{enterprise.regionName}}</li>
-            <li class="btn-group" role="group">
-              <a id="btnGroupVerticalDrop1" class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown"
-                 type="button">
-                <i class="fa fa-mobile fa-lg"></i>
-                {{enterprise.phones}}
-                <span class="caret"></span>
-              </a>
-              <!--<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" role="menu">-->
-              <!--&lt;!&ndash;<li *ngFor="let phone of enterprise.phones">{{phone}}</li>&ndash;&gt;-->
-              <!--</ul>-->
-            </li>
-            <li><a role="button" href="#" data-toggle="modal" data-target="#bgModalMessage"><i
-              class="fa fa-envelope-o"></i> Отправить запрос </a></li>
-            <li><a href=""><i class="fa fa-shopping-cart"></i> Все товары </a></li>
-          </ul>
-          <a class="btn btn-orange grn" role="button" href="#" data-toggle="modal" data-target="#bgModalUp">
-            <i class="fa fa-arrow-up fa-2x fa-inverse"></i>
-            <span>Поднять компанию</span>
-          </a>
+      <ngx-loading [show]="isContentLoading"
+                   [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true}"></ngx-loading>
+      <div *ngIf="!isContentLoading">
+        <div class="row incatalog" *ngFor="let enterprise of enterprises">
+          <div class="col-md-4 col-sm-4" *ngIf="false"><img src="img/{{enterprise.name}}" alt="enterprise.name"/></div>
+          <div class="col-md-5 col-sm-4">
+            <a routerLink="/enterprise/{{enterprise.slug}}"><h4>{{enterprise.name}}</h4></a>
+            <!--<p>-->
+            <!--EMPTY-->
+            <!--</p>-->
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <ul>
+              <li *ngIf="enterprise.regionName"><i class="fa fa-building"></i>{{enterprise.regionName}}</li>
+              <li class="btn-group" role="group">
+                <a id="btnGroupVerticalDrop1" class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown"
+                   type="button">
+                  <i class="fa fa-mobile fa-lg"></i>
+                  {{enterprise.phones}}
+                  <span class="caret"></span>
+                </a>
+                <!--<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" role="menu">-->
+                <!--&lt;!&ndash;<li *ngFor="let phone of enterprise.phones">{{phone}}</li>&ndash;&gt;-->
+                <!--</ul>-->
+              </li>
+              <li><a role="button" href="#" data-toggle="modal" data-target="#bgModalMessage"><i
+                class="fa fa-envelope-o"></i> Отправить запрос </a></li>
+              <li><a href=""><i class="fa fa-shopping-cart"></i> Все товары </a></li>
+            </ul>
+            <a class="btn btn-orange grn" role="button" href="#" data-toggle="modal" data-target="#bgModalUp">
+              <i class="fa fa-arrow-up fa-2x fa-inverse"></i>
+              <span>Поднять компанию</span>
+            </a>
+          </div>
         </div>
       </div>
-
 
       <!--Pagination-->
       <app-pagination [amountOfItems]="totalItems" [currentPage]="page" [itemsPerPage]="amountPerPage"

@@ -1,10 +1,11 @@
 <nav class="pagin">
   <ul class="pagination">
-    <li *ngIf="currentPage!==1" (click)="this.getPrev.emit()"><span aria-hidden="true">&laquo;</span>
+    <li *ngIf="currentPage!==1"><a href="#" (click)="$event.preventDefault(); getPrev.emit()"><span aria-hidden="true">&laquo;</span></a>
     </li>
-    <li *ngFor="let page of getPages()" [ngClass]="{'red':page===currentPage}"
-        (click)="this.getPage.emit(page)">{{page}}
+    <li *ngFor="let page of getPages()">
+      <a href="#" (click)="$event.preventDefault(); getPage.emit(page)" [ngClass]="{'navigation_button_active':page===currentPage}">{{page}}</a>
     </li>
-    <li *ngIf="hasNextPage()" (click)="this.getNext.emit()"><span aria-hidden="true">&raquo;</span>
+    <li *ngIf="hasNextPage()"><a href="#" (click)="$event.preventDefault(); getNext.emit()"><span aria-hidden="true">&raquo;</span></a>
+    </li>
   </ul>
 </nav>

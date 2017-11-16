@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {EnterpriseService} from '../../services/enterprise.service';
 
 @Component({
@@ -7,14 +7,15 @@ import {EnterpriseService} from '../../services/enterprise.service';
   styleUrls: ['./enterprise-search.component.css']
 })
 export class EnterpriseSearchComponent implements OnInit {
+  searchText: string;
+  @Output() searchEnterprises = new EventEmitter<string>();
 
-  constructor(private enterpriseService: EnterpriseService) {
+  constructor() {
 
   }
 
   ngOnInit() {
   }
-
 
 
 }

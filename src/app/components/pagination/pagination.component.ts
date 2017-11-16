@@ -1,4 +1,5 @@
 import {Component, Input,EventEmitter, OnInit, Output} from '@angular/core';
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-pagination',
@@ -22,8 +23,8 @@ export class PaginationComponent implements OnInit {
 
   getPages(): number[] {
     const totalPages = Math.ceil(this.amountOfItems / this.itemsPerPage);
-    const prevPageAmount = this.currentPage > 5 ? this.currentPage - 5 : 1;
-    const nextPageAmount = totalPages - this.currentPage > 5 ? this.currentPage + 5 : totalPages;
+    const prevPageAmount = this.currentPage > 3 ? this.currentPage - 3 : 1;
+    const nextPageAmount = totalPages - this.currentPage > 3 ? this.currentPage + 3 : totalPages;
 
     const pagesArr = [];
     for (let i = prevPageAmount; i <= nextPageAmount; i++) {

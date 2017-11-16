@@ -1,14 +1,39 @@
-<form class="navbar-search pull-left">
-  <input type="text" #searchText class="search-query pull-left"  placeholder="Я ищу...">
-
-  <!--<li class="dropdown pull-left">-->
-    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">предприятия <span class="caret"></span></a>-->
-    <!--<ul class="dropdown-menu" role="menu">-->
-      <!--<li><a href="#">Товары | Услуги</a></li>-->
-      <!--<li><a href="#">Объявления</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <button type="button" class="btn btn-default btn-lg icon-search" aria-label="Left Align">
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  </button>
-</form>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><img src="assets/logo.gif"/></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="icon-svg">
+          <button type="button" class="btn btn-default btn-lg i-shop" aria-label="Left Align">
+            <span class="icomoon icon-shopping82" aria-hidden="true"><br/>товары</span>
+          </button>
+          <button type="button" class="btn btn-default btn-lg i-factory active" aria-label="Left Align">
+            <span class="flaticon flaticon-career" aria-hidden="true"><br/>компании</span>
+          </button>
+          <button type="button" class="btn btn-default btn-lg i-document" aria-label="Left Align">
+            <span class="flaticon flaticon-document6" aria-hidden="true"><br/>заявки</span>
+          </button>
+        </li>
+        <li>
+          <form class="navbar-search pull-left">
+            <input type="text" [(ngModel)]="searchText" (keyup)="searchEnterprises.emit(searchText)" class="search-query pull-left"
+                   placeholder="Я ищу..." name="search">
+          <li class="dropdown pull-left">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">предприятия <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Товары | Услуги</a></li>
+              <li><a href="#">Объявления</a></li>
+            </ul>
+          </li>
+        <button type="button" class="btn btn-default btn-lg icon-search" aria-label="Left Align">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+        </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

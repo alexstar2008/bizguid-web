@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {NgClass} from '@angular/common';
+
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 
 import {EnterpriseService} from '../../services/enterprise.service';
 import {EnterpiseShort} from '../../schemas/enterpise-short';
@@ -14,6 +17,9 @@ export class EnterprisesListComponent implements OnInit {
   enterprises: EnterpiseShort[];
   regions: Region[];
   categories: Category[];
+
+  // progress
+  isContentLoading = true;
 
   // search
   regionsChosed = [];
@@ -75,24 +81,35 @@ export class EnterprisesListComponent implements OnInit {
 
   // GET
   getEnterprises(): void {
+    this.isContentLoading = true;
     const offset = (this.page - 1) * this.amountPerPage;
     this.enterpriseService.getAllEnterprises(offset, this.amountPerPage).subscribe((resp) => {
       this.totalItems = +resp.headers.get('X-Total-Count');
       this.enterprises = <EnterpiseShort[]>resp.body;
       this.searchType = 'all';
+      this.isContentLoading = false;
     });
   }
 
   searchEnterprises(): void {
+    this.isContentLoading = true;
     const offset = (this.page - 1) * this.amountPerPage;
     this.enterpriseService.searchEnterprisesByText(this.searchText, offset, this.amountPerPage).subscribe((resp) => {
       this.totalItems = +resp.headers.get('X-Total-Count');
       this.enterprises = <EnterpiseShort[]>resp.body;
       this.searchType = 'text';
+      this.isContentLoading = false;
     });
   }
 
-  toggleSelectedRegion(region): void {
+  setSearchText(searchText): void {
+    this.searchText = searchText;
+    this.searchEnterprises();
+  }
+
+  toggleSelectedRegion(region, event): void {
+    event.preventDefault();
+
     const id = region._id;
     if (!(this.regionsChosed.includes(id))) {
       this.regionsChosed.push(id);
@@ -113,6 +130,7 @@ export class EnterprisesListComponent implements OnInit {
   }
 
   searchEnterprisesByCategories(): void {
+    this.isContentLoading = true;
     const offset = (this.page - 1) * this.amountPerPage;
     const categories = this.categoriesChosed.length > 0 && this.categoriesChosed.join(',') || '';
     const regions = this.regionsChosed.length > 0 && this.regionsChosed.join(',') || '';
@@ -121,6 +139,7 @@ export class EnterprisesListComponent implements OnInit {
       this.totalItems = +resp.headers.get('X-Total-Count');
       this.enterprises = <EnterpiseShort[]>resp.body;
       this.searchType = 'categories';
+      this.isContentLoading = false;
     });
   }
 
