@@ -3,21 +3,30 @@ export class EnterpriseFull {
   name: string;
   logo: string;
   description: string;
-  emails: string;
+  emails: string[];
   phones: string;
   postAddress: string;
+  address: string;
   faxes: string;
   contactPeople: ContactPeople;
   openHours: OpenHours;
+  skype: string;
   employeesNumber: number;
   yearOfFoundation: number;
   bankDetails: BankDetails;
   productsAndOffers: string;
+  branches: string[];
+  trademarks: string;
   categoriesId: string[];
   companyRegionsId: string[];
+  exportRegionsID: string[];
+  importRegionsId: string[];
+  qualityStandarts: string;
+  sitesUrl: string;
 }
 
 class ContactPeople {
+  manager: string;
   director: string;
   accountant: string;
 }

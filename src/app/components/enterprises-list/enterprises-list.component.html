@@ -1,4 +1,5 @@
 <app-enterprise-search (searchEnterprises)="setSearchText($event)"></app-enterprise-search>
+
 <div class="container">
 
   <div class="starter-template">
@@ -11,62 +12,110 @@
 </div>
 <div class="container middl">
   <div class="row">
-    <ol class="breadcrumb">
-      <li><a href="#">Главная</a></li>
-      <li><a href="#">Предприятия</a></li>
-      <li class="active">Продукция сельского хозяйства, охоты и лесного хозяйства</li>
-    </ol>
-
+    <div class="col-md-3">
+      <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Предприятия</a></li>
+      </ol>
+    </div>
+    <div class="col-md-9">
+      <div class="filter-wrapper" *ngIf="categoriesSelected.length>0">
+        <div class="filter-name">Категории</div>
+        <ul class="filter-section orange">
+          <li *ngFor="let category of categoriesSelected">
+            {{category.name}}
+            <i class="fa fa-times" aria-hidden="true" (click)="removeCategoryFromFilter($event,category)"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="filter-wrapper" *ngIf="regionsSelected.length>0">
+        <div class="filter-name">Регионы</div>
+        <ul class="filter-section">
+          <li *ngFor="let region of regionsSelected">
+            {{region.name}}
+            <i class="fa fa-times" aria-hidden="true" (click)="removeRegionFromFilter($event,region)"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="filter-wrapper">
+        <div class="filter-name-amount">Найдено предприятий:</div>
+        <div class="filter-amount">{{totalItems}}</div>
+      </div>
+    </div>
   </div>
-  <!-- leftmenu -->
+
+  <!--search left panel-->
   <div class="row">
     <div class="col-md-3">
-      <!--<a class="beforeyellow" href="">-->
-      <h3 class="yellows category" *ngFor="let category of categories"
-          [ngClass]="{'category_active':categoriesChosed.indexOf(category._id)!==-1}"
-          (click)="toggleSelectedCategory(category)">
-        {{category.name}}</h3>
+      <div *ngIf="categories && categories.length>0">
+        <h3 class="yellows category"
+            *ngFor="let category of categories"
+            [ngClass]="{'category_active':categoriesSelected.includes(category)!==-1}">
+          <span (click)="addCategoryToFilter($event,category,'highCategory')">
+            {{category.name}}
+          </span>
+          <!--middle-categories-->
+          <ul class="nav nav-pills nav-stacked middle-categories"
+              *ngIf="category===activeHighCategory && middleCategories[category._id]">
+            <li *ngFor="let middleCategory of middleCategories[category._id]">
+              <span (click)="addCategoryToFilter($event,middleCategory,'middleCategory')">
+                {{middleCategory.name}}
+              </span>
+              <!--low-categories-->
+              <ul class="nav nav-pills nav-stacked middle-categories"
+                  *ngIf="middleCategory===activeMiddleCategory && lowCategories[middleCategory._id]">
+                <li *ngFor="let lowCategory of lowCategories[middleCategory._id]">
+                  <span (click)="addCategoryToFilter($event, lowCategory,'lowCategory')">
+                    {{lowCategory.name}}
+                  </span>
+                </li>
+              </ul>
 
-      <ul class="nav nav-pills nav-stacked">
-        <!--<li><a href="#">Продукты пищевые прочие (23357)</a></li>-->
-        <!--<li><a href="#">Мясо, мясопродукты и продукты убоя животных (20105)</a></li>-->
-        <!--<li><a href="#">Корма готовые для животных (16012)</a></li>-->
-        <!--<li><a href="#">Продукция мукомольно-крупяной промышленности и крахмалопродукты (14107)</a></li>-->
-        <!--<li><a href="#">Продукты молочные и мороженое (10275)</a></li>-->
-        <!--<li><a href="#">Жиры животные и масла растительные (7308)</a></li>-->
-        <!--<li><a href="#">Напитки (6845)</a></li>-->
-        <!--<li><a href="#">Продукция переработки овощей и плодов (4692)</a></li>-->
-        <!--<li><a href="#">Продукция рыбная (2652)</a></li>-->
-      </ul>
+            </li>
+          </ul>
 
+        </h3>
+      </div>
       <h4 class="yellows">Компании в регионах</h4>
       <button type="button" class="btn panel panel-heading" data-toggle="collapse" data-target="#ukr"
               aria-expanded="false" aria-controls="ukr"> Украина <span class="caret"></span></button>
+
       <!--<div id="ukr" class="collapse ">-->
       <ul>
-        <li *ngFor="let region of regions"><a href="{{region.slug}}"
-                                              [ngClass]="{'region_active':regionsChosed.indexOf(region._id)!=-1}"
-                                              (click)="toggleSelectedRegion(region,$event)">{{region.name}}</a>
+        <li *ngFor="let region of regions">
+            <a href="{{region.slug}}"
+              [ngClass]="{'region_active':regionsSelected.indexOf(region._id)!=-1}"
+              (click)="addRegionToFilter($event,region,'highRegion')">
+                {{region.name}}
+            </a>
+            <!--middle-regions-->
+            <ul class="nav nav-pills nav-stacked middle-categories region-list"
+                *ngIf="region===activeHighRegion && middleRegions && region && middleRegions[region._id]">
+                <li *ngFor="let middleRegion of middleRegions[region._id]">
+                  <span (click)="addRegionToFilter($event,middleRegion,'middleRegion')">
+                    {{middleRegion.name}}
+                  </span>
+                </li>
+            </ul>
         </li>
       </ul>
       <div class="clear"></div>
       <!--</div>-->
-      <a class="btn panel panel-heading" href=""> Армения</a>
-      <a class="btn panel panel-heading" href=""> Беларусь</a>
-      <a class="btn panel panel-heading" href=""> Китай</a>
-      <a class="btn panel panel-heading" href=""> Чехия</a>
-      <a class="btn panel panel-heading" href=""> Дания</a>
-      <a class="btn panel panel-heading" href=""> Эстония</a>
+      <!--<a class="btn panel panel-heading" href=""> Армения</a>-->
+      <!--<a class="btn panel panel-heading" href=""> Беларусь</a>-->
+      <!--<a class="btn panel panel-heading" href=""> Китай</a>-->
+      <!--<a class="btn panel panel-heading" href=""> Чехия</a>-->
+      <!--<a class="btn panel panel-heading" href=""> Дания</a>-->
+      <!--<a class="btn panel panel-heading" href=""> Эстония</a>-->
     </div>
-    <!-- /leftmenu -->
 
-
+    <!--Enterprises List-->
     <div class="col-md-9 no-padding-left">
-      <ngx-loading [show]="isContentLoading"
-                   [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true}"></ngx-loading>
       <div *ngIf="!isContentLoading">
         <div class="row incatalog" *ngFor="let enterprise of enterprises">
-          <div class="col-md-4 col-sm-4" *ngIf="false"><img src="img/{{enterprise.name}}" alt="enterprise.name"/></div>
+          <div class="col-md-4 col-sm-4" *ngIf="false">
+            <img src="img/{{enterprise.name}}" alt="{{enterprise.name}}"/>
+          </div>
           <div class="col-md-5 col-sm-4">
             <a routerLink="/enterprise/{{enterprise.slug}}"><h4>{{enterprise.name}}</h4></a>
             <!--<p>-->
@@ -75,12 +124,14 @@
           </div>
           <div class="col-md-3 col-sm-4">
             <ul>
-              <li *ngIf="enterprise.regionName"><i class="fa fa-building"></i>{{enterprise.regionName}}</li>
+              <li *ngIf="enterprise.regionName">
+                <i class="fa fa-building"></i>{{enterprise.regionName}}
+              </li>
               <li class="btn-group" role="group">
                 <a id="btnGroupVerticalDrop1" class="dropdown-toggle" aria-expanded="false" data-toggle="dropdown"
                    type="button">
                   <i class="fa fa-mobile fa-lg"></i>
-                  {{enterprise.phones}}
+                    {{enterprise.phones}}
                   <span class="caret"></span>
                 </a>
                 <!--<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" role="menu">-->
@@ -101,14 +152,15 @@
 
       <!--Pagination-->
       <app-pagination [amountOfItems]="totalItems" [currentPage]="page" [itemsPerPage]="amountPerPage"
-                      (getNext)="onNext()" (getPrev)="onPrev()" (getPage)="onPage($event)"
-      ></app-pagination>
-
+                      (getNext)="onNext()" (getPrev)="onPrev()" (getPage)="onPage($event)">
+      </app-pagination>
     </div>
 
-
-  </div> <!-- /container -->
+  </div>
 </div>
+
+
+<!--MODAL WINDOWS-->
 <div class="modal fade" id="bgModalUp" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">

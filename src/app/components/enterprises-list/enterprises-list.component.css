@@ -1,0 +1,67 @@
+.filter-wrapper {
+  padding-top: 5px;
+}
+
+.filter-name {
+  padding: 5px 15px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #428bca;
+}
+
+.filter-name-amount {
+  padding: 5px 15px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #428bca;
+  display: inline-block;
+}
+
+.filter-amount {
+  font-size: 1.15em;
+  display: inline-block;
+  color: #fc9333;
+  font-weight: bold;
+}
+
+.filter-section {
+  /*width: 100%;*/
+}
+
+.filter-section li {
+  padding: 5px 15px;
+  margin: 5px;
+  display: inline-block;
+  border-radius: 2em;
+  background-color: #428bca;
+  color: #fff;
+}
+
+.filter-section i {
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform .5s;
+}
+
+.filter-section i:hover {
+  transform: scale(1.5);
+  transition: transform 1s;
+}
+
+.orange li {
+  background-color: #fc9333;
+}
+
+ul.middle-categories {
+  padding-left: 25px;
+
+}
+ul.region-list li {
+  color: #428bca;
+  cursor: pointer;
+}
+ul.middle-categories li {
+  font-weight: normal;
+}
+
+ul.nav-stacked:last-of-type {
+  /*border-bottom: none;*/
+}
