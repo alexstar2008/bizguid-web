@@ -1,0 +1,93 @@
+<!-- <div class="modal fade"  id="bgModalUp" tabindex="-1" role="dialog"> -->
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button class="close" type="button" (click)="close()">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Поднять компанию</h4>
+    </div>
+    <div class="modal-body">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active">
+          <a href="#tab1" data-toggle="tab">На главной</a>
+        </li>
+        <li>
+          <a href="#tab2" data-toggle="tab">По категории</a>
+        </li>
+        <li>
+          <a href="#tab3" data-toggle="tab">По региону</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <form>
+            <div class="control-group">
+              <div class="controls">
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList1" value="option1"> Поднять компанию на 3 дня - 10 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList2" value="option2"> Поднять компанию на 7 дней- 20 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList3" value="option3"> Поднять компанию на 1 месяц - 60 грн
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <form>
+            <p>Продукция сельского хозяйства, охоты и лесного хозяйства</p>
+            <div class="control-group">
+              <div class="controls">
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList1" value="option1"> Поднять компанию на 3 дня - 10 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList2" value="option2"> Поднять компанию на 7 дней- 20 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList3" value="option3"> Поднять компанию на 1 месяц - 60 грн
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane" id="tab3">
+          <form>
+            <p>Украина &gt; Киев</p>
+            <div class="control-group">
+              <div class="controls">
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList1" value="option1"> Поднять компанию на 3 дня - 10 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList2" value="option2"> Поднять компанию на 7 дней- 20 грн
+                </label>
+                <label class="checkbox">
+                  <input type="checkbox" name="optionsCheckboxList3" value="option3"> Поднять компанию на 1 месяц - 60 грн
+                </label>
+              </div>
+            </div>
+            <!--
+                <div class="form-group"><label class="control-label">Название</label>
+                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
+                <div class="form-group"><label class="control-label">Название</label>
+                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
+                <div class="form-group"><label class="control-label">Название</label>
+                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
+                  <div class="form-group"><label class="control-label">Название</label>
+              <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
+              -->
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-orange grn btn-lg" type="button" (click)="confirm()">Поднять</button>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

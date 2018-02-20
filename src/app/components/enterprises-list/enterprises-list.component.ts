@@ -1,9 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import {EnterpriseService} from '../../services/enterprise.service';
-import {EnterpiseShort} from '../../schemas/enterpise-short';
-import {Region} from '../../schemas/region';
-import {Category} from '../../schemas/category';
+import { EnterpriseService } from '../../services/enterprise.service';
+import { EnterpiseShort } from '../../schemas/enterpise-short';
+import { Region } from '../../schemas/region';
+import { Category } from '../../schemas/category';
+import { PaymentComponent } from '../payment/payment.component';
+import { DialogService } from 'ng2-bootstrap-modal';
 
 @Component({
   selector: 'app-enterprises-list',
@@ -34,14 +36,14 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
   searchText: string;
 
   // pagination
-  totalItems = 100;s
+  totalItems = 100;
   page = 1;
   amountPerPage = 25;
 
   // TODO: FIX HARDCODE SECTION
   searchType = 'all';
 
-  constructor(private enterpriseService: EnterpriseService){
+  constructor(private enterpriseService: EnterpriseService, private dialogService: DialogService) {
     // TODO: change filter caching
     this.regionsSelected = this.enterpriseService.regionsSelected;
     this.categoriesSelected = this.enterpriseService.categoriesSelected;
@@ -66,6 +68,15 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     this.enterpriseService.page = this.page;
     this.enterpriseService.amountPerPage = this.amountPerPage;
     this.enterpriseService.searchType = this.searchType;
+  }
+  showPaymentModal(event): void {
+    event.preventDefault();
+    let disposable = this.dialogService.addDialog(PaymentComponent, {
+      title: 'Test',
+      price: 10
+    }).subscribe((result) => {
+      console.log(result);
+    });
   }
 
   matchSearchType(): void {
@@ -111,7 +122,7 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     if (this.searchText === '' || /^\s*$/.test(this.searchText)) {
       this.searchText = '';
       this.getAllEnterprises();
-    }else{
+    } else {
       this.getEnterprisesByText();
     }
   }
@@ -120,13 +131,13 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     event.preventDefault();
 
     switch (regionType) {
-      case 'highRegion' :
+      case 'highRegion':
         this.activeHighRegion = region;
         this.getRegions('middleRegions', region._id);
         break;
       case 'middleRegion':
         break;
-      default :
+      default:
         break;
     }
 

@@ -142,7 +142,7 @@
                 class="fa fa-envelope-o"></i> Отправить запрос </a></li>
               <li><a href=""><i class="fa fa-shopping-cart"></i> Все товары </a></li>
             </ul>
-            <a class="btn btn-orange grn" role="button" href="#" data-toggle="modal" data-target="#bgModalUp">
+            <a class="btn btn-orange grn" role="button" href="#" (click)="showPaymentModal($event)">
               <i class="fa fa-arrow-up fa-2x fa-inverse"></i>
               <span>Поднять компанию</span>
             </a>
@@ -156,133 +156,6 @@
       </app-pagination>
     </div>
 
-  </div>
-</div>
-
-
-<!--MODAL WINDOWS-->
-<div class="modal fade" id="bgModalUp" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button class="close" type="button" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Поднять компанию</h4>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-tabs nav-justified">
-          <li class="active"><a href="#tab1" data-toggle="tab">На главной</a></li>
-          <li><a href="#tab2" data-toggle="tab">По категории</a></li>
-          <li><a href="#tab3" data-toggle="tab">По региону</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab1">
-            <form>
-              <div class="control-group">
-                <div class="controls">
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList1" value="option1">
-                    Поднять компанию на 3 дня - 10 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList2" value="option2">
-                    Поднять компанию на 7 дней- 20 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList3" value="option3">
-                    Поднять компанию на 1 месяц - 60 грн
-                  </label>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="tab-pane" id="tab2">
-            <form>
-              <p>Продукция сельского хозяйства, охоты и лесного хозяйства</p>
-              <div class="control-group">
-                <div class="controls">
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList1" value="option1">
-                    Поднять компанию на 3 дня - 10 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList2" value="option2">
-                    Поднять компанию на 7 дней- 20 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList3" value="option3">
-                    Поднять компанию на 1 месяц - 60 грн
-                  </label>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="tab-pane" id="tab3">
-            <form>
-              <p>Украина > Киев</p>
-              <div class="control-group">
-                <div class="controls">
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList1" value="option1">
-                    Поднять компанию на 3 дня - 10 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList2" value="option2">
-                    Поднять компанию на 7 дней- 20 грн
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox" name="optionsCheckboxList3" value="option3">
-                    Поднять компанию на 1 месяц - 60 грн
-                  </label>
-                </div>
-              </div>
-              <!--
-                <div class="form-group"><label class="control-label">Название</label>
-                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
-                <div class="form-group"><label class="control-label">Название</label>
-                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
-                <div class="form-group"><label class="control-label">Название</label>
-                <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
-                  <div class="form-group"><label class="control-label">Название</label>
-              <input type="text" class="form-control" placeholder="Вспомогающий текст…"></div>
-              -->
-            </form>
-          </div>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn btn-orange grn btn-lg" type="button">Поднять</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="bgModalMessage" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button class="close" type="button" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Отправить запрос</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group"><label class="control-label">Фамилия, имя*</label>
-            <input type="text" class="form-control" placeholder="Крылов Евгений"></div>
-          <div class="form-group"><label class="control-label">Телефон</label>
-            <input type="tel" class="form-control" placeholder="229-81-01"></div>
-          <div class="form-group"><label class="control-label">e-mail*</label>
-            <input type="email" class="form-control" placeholder="studio@cleardesign.com.ua"></div>
-          <div class="form-group"><label class="control-label">Описание*</label>
-
-            <textarea class="input-medium" id="textarea" rows="4"></textarea></div>
-          <p>Поля отмеченные знаком " * " обязательны для заполнения</p>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-orange grn btn-lg" type="button">Отправить</button>
-      </div>
-    </div>
   </div>
 </div>
 
